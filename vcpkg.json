@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "worn-carry-weight",
+  "version-semver": "1.0.0",
+  "description": "SKSE plugin that excludes worn item weight from inventory weight",
+  "dependencies": [
+    "commonlibsse-ng",
+    "spdlog",
+    "simpleini"
+  ]
+}
+
+
+
+
