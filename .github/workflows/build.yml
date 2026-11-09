@@ -1,0 +1,28 @@
+name: Build
+
+on:
+  push:
+    branches: [fix-runtime-compat]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: '<your vcpkg baseline commit>'
+
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'vs2022'
+          buildPreset: 'vs2022-release'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: WornCarryWeight
+          path: build/**/*.dll
