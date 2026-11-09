@@ -16,10 +16,13 @@ jobs:
       - uses: lukka/run-vcpkg@v11
      
 
-      - uses: lukka/run-cmake@v10
+      - name: Configure with CMake
+        uses: lukka/run-cmake@v10
         with:
           configurePreset: 'release'
-          buildPreset: 'release'
+
+      - name: Build
+        run: cmake --build build/release --config Release
 
       - uses: actions/upload-artifact@v4
         with:
