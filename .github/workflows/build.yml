@@ -7,20 +7,28 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2022
+    env:
+      VCPKG_ROOT: ${{ github.workspace }}/vcpkg
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: true
 
       - uses: lukka/run-vcpkg@v11
-      
-      - uses: lukka/run-cmake@v10
+        with:
+          vcpkgDirectory: ${{ github.workspace }}/vcpkg
+
+      - name: Configure CMake
+        uses: lukka/run-cmake@v10
         with:
           configurePreset: 'release'
-          buildPreset: 'release'
 
-      - uses: actions/upload-artifact@v4
+      - name: Build
+        run: cmake --build build/release --config Release
+
+      - name: Upload DLL
+        uses: actions/upload-artifact@v4
         with:
           name: WornCarryWeight
-          path: build/**/*.dll
+          path: Compile/SKSE/Plugins/WornCarryWeight.dll
