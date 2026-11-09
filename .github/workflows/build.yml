@@ -14,8 +14,7 @@ jobs:
           submodules: true
 
       - uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgGitCommitId: '<your vcpkg baseline commit>'
+     
 
       - uses: lukka/run-cmake@v10
         with:
