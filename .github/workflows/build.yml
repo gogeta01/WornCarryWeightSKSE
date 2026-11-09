@@ -18,8 +18,8 @@ jobs:
 
       - uses: lukka/run-cmake@v10
         with:
-          configurePreset: 'vs2022'
-          buildPreset: 'vs2022-release'
+          configurePreset: 'release'
+          buildPreset: 'release'
 
       - uses: actions/upload-artifact@v4
         with:
